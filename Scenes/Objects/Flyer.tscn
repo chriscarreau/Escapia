@@ -1,14 +1,121 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnin3ms3fis13"]
+[gd_scene load_steps=6 format=3 uid="uid://cnin3ms3fis13"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/Flyer.cs" id="1_p8kpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4rfe"]
-size = Vector2(200, 300)
+size = Vector2(150, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t78mo"]
+size = Vector2(50, 300)
+
+[sub_resource type="Animation" id="Animation_koti7"]
+resource_name = "Open"
+length = 1.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SecondPage:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.44, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, -30, 0, 330, 0, 300), PackedVector2Array(0, 0, 0, -15, 0, 315, 0, 300), PackedVector2Array(0, 0, 200, 0, 200, 300, 0, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FirstPage:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-100, -150), Vector2(116.192, -165), Vector2(300, -150)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FirstPage:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DragArea/DragShape:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.01, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2.65, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DragArea/DragShape:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-25, 0), Vector2(100, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenArea/OpenShape:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenArea/OpenShape:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(75, 0), Vector2(400, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scq4q"]
+_data = {
+"Open": SubResource("Animation_koti7")
+}
 
 [node name="Flyer" type="Node2D"]
 script = ExtResource("1_p8kpo")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="ThirdPage" type="Polygon2D" parent="."]
+position = Vector2(-100, -150)
+color = Color(0.352941, 0.360784, 0.623529, 1)
+polygon = PackedVector2Array(0, 0, 200, 0, 200, 300, 0, 300)
+
+[node name="SecondPage" type="Polygon2D" parent="."]
+position = Vector2(100, -150)
+color = Color(0.745098, 0.376471, 0.14902, 1)
+polygon = PackedVector2Array(0, 0, 0, -30, 0, 330, 0, 300)
+
+[node name="FirstPage" type="Polygon2D" parent="."]
 position = Vector2(-100, -150)
 color = Color(0.631373, 0.239216, 0.337255, 1)
 polygon = PackedVector2Array(0, 0, 200, 0, 200, 300, 0, 300)
@@ -16,7 +123,22 @@ polygon = PackedVector2Array(0, 0, 200, 0, 200, 300, 0, 300)
 [node name="DragArea" type="StaticBody2D" parent="."]
 input_pickable = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+[node name="DragShape" type="CollisionShape2D" parent="DragArea"]
+position = Vector2(-25, 0)
+scale = Vector2(1.01634, 1)
 shape = SubResource("RectangleShape2D_x4rfe")
 
+[node name="OpenArea" type="StaticBody2D" parent="."]
+input_pickable = true
+
+[node name="OpenShape" type="CollisionShape2D" parent="OpenArea"]
+position = Vector2(75, 0)
+shape = SubResource("RectangleShape2D_t78mo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_scq4q")
+}
+
 [connection signal="input_event" from="DragArea" to="." method="OnMouseInput"]
+[connection signal="input_event" from="OpenArea" to="." method="OnOpenInput"]
