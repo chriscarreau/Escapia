@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Escapia"
-run/main_scene="res://Scenes/Gameplay/CursorTest.tscn"
+run/main_scene="res://Scenes/SceneHandler.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://Code/Globals/Events.cs"
+State="*res://Code/Globals/State.cs"
 
 [dotnet]
 
