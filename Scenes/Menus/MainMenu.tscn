@@ -28,3 +28,5 @@ grow_vertical = 2
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "START"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="OnStartPressed"]

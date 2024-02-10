@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnin3ms3fis13"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/Flyer.cs" id="1_p8kpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4rfe"]
+size = Vector2(200, 300)
+
+[node name="Flyer" type="Node2D"]
+script = ExtResource("1_p8kpo")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-100, -150)
+color = Color(0.631373, 0.239216, 0.337255, 1)
+polygon = PackedVector2Array(0, 0, 200, 0, 200, 300, 0, 300)
+
+[node name="DragArea" type="StaticBody2D" parent="."]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+shape = SubResource("RectangleShape2D_x4rfe")
+
+[connection signal="input_event" from="DragArea" to="." method="OnMouseInput"]
