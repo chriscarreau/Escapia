@@ -1,12 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://p4muf8hocpph"]
+[gd_scene load_steps=19 format=3 uid="uid://p4muf8hocpph"]
 
 [ext_resource type="Script" path="res://Scenes/Gameplay/Game.cs" id="1_03rvx"]
 [ext_resource type="Script" path="res://Code/Cursor/CursorReset.cs" id="2_nvdjd"]
-[ext_resource type="PackedScene" uid="uid://cnin3ms3fis13" path="res://Scenes/Objects/Flyer.tscn" id="2_ydstd"]
-[ext_resource type="PackedScene" path="res://Scenes/Objects/FlyerThumbnail.tscn" id="3_sbsvg"]
+[ext_resource type="Texture2D" uid="uid://bx2st863lxyjt" path="res://Assets/FlyerStand.png" id="3_1ad1h"]
+[ext_resource type="Texture2D" uid="uid://dxu124m8wolr2" path="res://Assets/Character1.png" id="3_c01uu"]
+[ext_resource type="Texture2D" uid="uid://cppiih2yilo41" path="res://Assets/Wall.png" id="3_q1xap"]
+[ext_resource type="PackedScene" uid="uid://dpvrpbegrc3an" path="res://Scenes/Objects/FlyerThumbnail.tscn" id="3_sbsvg"]
+[ext_resource type="Texture2D" uid="uid://btj3wqafjjobs" path="res://Assets/Sunny1.png" id="4_nvyyw"]
+[ext_resource type="Resource" uid="uid://dd1038us2e7ru" path="res://Resources/Flyers/ToeNails.tres" id="4_utxbv"]
+[ext_resource type="Resource" uid="uid://cn4lc3qysoo43" path="res://Resources/Flyers/BigIceCube.tres" id="5_i2mib"]
+[ext_resource type="Texture2D" uid="uid://3fkw208f77vq" path="res://Assets/Sunny2.png" id="5_snqpf"]
+[ext_resource type="Texture2D" uid="uid://olbjf82ai1xh" path="res://Assets/Sunny3.png" id="6_x4763"]
+[ext_resource type="Texture2D" uid="uid://duiqcur4hnybb" path="res://Assets/Curtains.png" id="7_2hklj"]
+[ext_resource type="Texture2D" uid="uid://bhyu760jle8ig" path="res://Assets/Desk.png" id="7_htito"]
+[ext_resource type="Texture2D" uid="uid://b1dstp57p3x5v" path="res://Assets/Calendar.png" id="13_uxipn"]
+[ext_resource type="Texture2D" uid="uid://cicruu4neuqu1" path="res://Assets/Map.png" id="15_yid7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv4xm"]
-size = Vector2(1175, 663)
+size = Vector2(1945, 1101)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jglcf"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("4_nvyyw")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_snqpf")
+}, {
+"duration": 2.0,
+"texture": ExtResource("6_x4763")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53hcw"]
+size = Vector2(1920, 672.5)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_03rvx")
@@ -14,40 +45,114 @@ script = ExtResource("1_03rvx")
 [node name="CursorReset" type="Node" parent="."]
 script = ExtResource("2_nvdjd")
 
-[node name="Area2D" type="Area2D" parent="CursorReset"]
+[node name="MouseIdleArea" type="Area2D" parent="CursorReset"]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CursorReset/Area2D"]
-position = Vector2(577.5, 321.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CursorReset/MouseIdleArea"]
+position = Vector2(962.5, 540.5)
 shape = SubResource("RectangleShape2D_tv4xm")
 
-[node name="Window" type="Polygon2D" parent="."]
-position = Vector2(-495, -335)
-scale = Vector2(0.721091, 0.845897)
-color = Color(0.67451, 0.921569, 0.972549, 1)
-polygon = PackedVector2Array(1261.69, 408.297, 1261.8, 626.95, 1709.49, 628.201, 1710.17, 517.7, 1710.85, 408.297)
+[node name="Wall" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1263.47, 215)
+scale = Vector2(3.17647, 3.17647)
+texture = ExtResource("3_q1xap")
 
-[node name="Client" type="Polygon2D" parent="."]
-position = Vector2(201, -170)
-scale = Vector2(0.434293, 0.750904)
-color = Color(0, 0.666667, 0.345098, 1)
-polygon = PackedVector2Array(1407.59, 404.304, 1310.51, 464.595, 1306.35, 623.007, 1672.47, 625.371, 1671.53, 516.477, 1671.08, 463.413, 1557.36, 404.304)
+[node name="Window" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1049, 168)
+scale = Vector2(2.28704, 2.28704)
+sprite_frames = SubResource("SpriteFrames_jglcf")
+autoplay = "default"
+frame_progress = 0.930027
+
+[node name="Curtains" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1057, 170)
+scale = Vector2(2.32114, 2.32114)
+texture = ExtResource("7_2hklj")
+
+[node name="Client" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1494.63, 271.583)
+scale = Vector2(2.54333, 2.54333)
+texture = ExtResource("3_c01uu")
 
 [node name="Flyers" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(-518, -461)
 scale = Vector2(0.444617, 1.19132)
 color = Color(0.968627, 0.552941, 0.309804, 1)
 polygon = PackedVector2Array(1268.51, 388.644, 1203.28, 632.071, 1765.56, 632.071, 1700.34, 388.644)
 
-[node name="Desk" type="Polygon2D" parent="."]
-position = Vector2(-3254.47, -367.442)
-scale = Vector2(2.57765, 1.61643)
-color = Color(0.368627, 0.247059, 0, 1)
-polygon = PackedVector2Array(1261.8, 410.458, 1261.8, 626.95, 1709.49, 628.201, 1709.49, 517.663, 1709.49, 408.581)
+[node name="FlyersStand" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(340.007, 204)
+scale = Vector2(2.98529, 3)
+texture = ExtResource("3_1ad1h")
 
-[node name="Flyer" parent="." instance=ExtResource("2_ydstd")]
-position = Vector2(154, 464)
+[node name="ToeNail" parent="." instance=ExtResource("3_sbsvg")]
+position = Vector2(78, 66)
+scale = Vector2(1, 1)
+FlyerData = ExtResource("4_utxbv")
 
-[node name="FlyerThumbnail" parent="." instance=ExtResource("3_sbsvg")]
-position = Vector2(464, 390)
+[node name="IceCube" parent="." instance=ExtResource("3_sbsvg")]
+position = Vector2(217, 66)
+FlyerData = ExtResource("5_i2mib")
 
-[connection signal="input_event" from="CursorReset/Area2D" to="CursorReset" method="ResetMouseEvent"]
+[node name="Desk" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960.289, 743.25)
+scale = Vector2(2.99778, 2.99778)
+texture = ExtResource("7_htito")
+
+[node name="DeskArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeskArea"]
+visible = false
+position = Vector2(961, 744.25)
+shape = SubResource("RectangleShape2D_53hcw")
+
+[node name="Calendar" type="Sprite2D" parent="."]
+position = Vector2(1768.63, 116.642)
+scale = Vector2(2.69444, 2.69444)
+texture = ExtResource("13_uxipn")
+
+[node name="MonthLbl" type="Label" parent="."]
+offset_left = 1718.0
+offset_top = 89.0
+offset_right = 1828.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "JAN"
+horizontal_alignment = 1
+
+[node name="DateLbl" type="Label" parent="."]
+offset_left = 1718.0
+offset_top = 127.0
+offset_right = 1827.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+
+[node name="DayLbl3" type="Label" parent="."]
+offset_left = 1718.0
+offset_top = 174.0
+offset_right = 1828.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "MONDAY"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1007, 744)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("15_yid7d")
+
+[connection signal="input_event" from="CursorReset/MouseIdleArea" to="CursorReset" method="ResetMouseEvent"]

@@ -21,6 +21,13 @@ Events="*res://Code/Globals/Events.cs"
 State="*res://Code/Globals/State.cs"
 CursorManager="*res://Code/Cursor/CursorManager.cs"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
 [dotnet]
 
 project/assembly_name="Escapia"

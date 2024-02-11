@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://Scenes/Objects/FlyerThumbnail.cs" id="1_ixwil"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj43o"]
-size = Vector2(50, 75)
+size = Vector2(70, 105)
 
 [node name="FlyerThumbnail" type="Node2D"]
 script = ExtResource("1_ixwil")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("1_d5s4y")
 
 [node name="DragArea" type="StaticBody2D" parent="."]
