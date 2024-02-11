@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://bde0uw3c6gye6"]
+
+[ext_resource type="Script" path="res://Code/Cursor/CursorManagerProxy.cs" id="1_1fexb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw1x4"]
+size = Vector2(44.8165, 31.7391)
+
+[node name="CursorTest" type="Node2D"]
+
+[node name="CursorManager" type="Node" parent="."]
+script = ExtResource("1_1fexb")
+
+[node name="Mouth" type="Polygon2D" parent="."]
+position = Vector2(-180, -68)
+scale = Vector2(7.26667, 5.75)
+color = Color(0.054902, 1, 1, 1)
+polygon = PackedVector2Array(37, 28, 82, 28, 82, 60, 37, 60)
+
+[node name="Area2D" type="Area2D" parent="Mouth"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouth/Area2D"]
+position = Vector2(59.6101, 44.3043)
+shape = SubResource("RectangleShape2D_jw1x4")
+
+[node name="Eye" type="Polygon2D" parent="."]
+position = Vector2(-174, 221)
+scale = Vector2(7.26667, 5.75)
+color = Color(0.054902, 1, 1, 1)
+polygon = PackedVector2Array(37, 28, 82, 28, 82, 60, 37, 60)
+
+[node name="Area2D" type="Area2D" parent="Eye"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eye/Area2D"]
+position = Vector2(59.6101, 44.3043)
+shape = SubResource("RectangleShape2D_jw1x4")
+
+[node name="Hand" type="Polygon2D" parent="."]
+position = Vector2(214, -70)
+scale = Vector2(7.26667, 5.75)
+color = Color(0.054902, 1, 1, 1)
+polygon = PackedVector2Array(37, 28, 82, 28, 82, 60, 37, 60)
+
+[node name="Area2D" type="Area2D" parent="Hand"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Area2D"]
+position = Vector2(59.6101, 44.3043)
+shape = SubResource("RectangleShape2D_jw1x4")
+
+[node name="Hand90" type="Polygon2D" parent="."]
+position = Vector2(213, 220)
+scale = Vector2(7.26667, 5.75)
+color = Color(0.054902, 1, 1, 1)
+polygon = PackedVector2Array(37, 28, 82, 28, 82, 60, 37, 60)
+
+[node name="Area2D" type="Area2D" parent="Hand90"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand90/Area2D"]
+position = Vector2(59.6101, 44.3043)
+shape = SubResource("RectangleShape2D_jw1x4")
+
+[node name="Fist" type="Polygon2D" parent="."]
+position = Vector2(553.133, -67)
+scale = Vector2(7.26667, 5.75)
+color = Color(0.054902, 1, 1, 1)
+polygon = PackedVector2Array(37, 28, 82, 28, 82, 60, 37, 60)
+
+[node name="Area2D" type="Area2D" parent="Fist"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fist/Area2D"]
+position = Vector2(59.6101, 44.3043)
+shape = SubResource("RectangleShape2D_jw1x4")
+
+[node name="Fist90" type="Polygon2D" parent="."]
+position = Vector2(559, 224)
+scale = Vector2(7.26667, 5.75)
+color = Color(0.054902, 1, 1, 1)
+polygon = PackedVector2Array(37, 28, 82, 28, 82, 60, 37, 60)
+
+[node name="Area2D" type="Area2D" parent="Fist90"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fist90/Area2D"]
+position = Vector2(59.6101, 44.3043)
+shape = SubResource("RectangleShape2D_jw1x4")
+
+[connection signal="mouse_entered" from="Mouth/Area2D" to="CursorManager" method="SetMouth"]
+[connection signal="mouse_exited" from="Mouth/Area2D" to="CursorManager" method="Reset"]
+[connection signal="mouse_entered" from="Eye/Area2D" to="CursorManager" method="SetEye"]
+[connection signal="mouse_exited" from="Eye/Area2D" to="CursorManager" method="Reset"]
+[connection signal="mouse_entered" from="Hand/Area2D" to="CursorManager" method="SetHand"]
+[connection signal="mouse_exited" from="Hand/Area2D" to="CursorManager" method="Reset"]
+[connection signal="mouse_entered" from="Hand90/Area2D" to="CursorManager" method="SetHand90"]
+[connection signal="mouse_exited" from="Hand90/Area2D" to="CursorManager" method="Reset"]
+[connection signal="mouse_entered" from="Fist/Area2D" to="CursorManager" method="SetFist"]
+[connection signal="mouse_exited" from="Fist/Area2D" to="CursorManager" method="Reset"]
+[connection signal="mouse_entered" from="Fist90/Area2D" to="CursorManager" method="SetFist90"]
+[connection signal="mouse_exited" from="Fist90/Area2D" to="CursorManager" method="Reset"]

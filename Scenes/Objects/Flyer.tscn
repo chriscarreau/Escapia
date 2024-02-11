@@ -146,4 +146,6 @@ libraries = {
 }
 
 [connection signal="input_event" from="DragArea" to="." method="OnMouseInput"]
+[connection signal="mouse_exited" from="DragArea" to="." method="OnExit"]
 [connection signal="input_event" from="OpenArea" to="." method="OnOpenInput"]
+[connection signal="mouse_exited" from="OpenArea" to="." method="OnExit"]

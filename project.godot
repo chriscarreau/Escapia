@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Events="*res://Code/Globals/Events.cs"
 State="*res://Code/Globals/State.cs"
+CursorManager="*res://Code/Cursor/CursorManager.cs"
 
 [dotnet]
 
