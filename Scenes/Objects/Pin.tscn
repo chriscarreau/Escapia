@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2so2n7q3vgm5"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/Pin.cs" id="1_acq8r"]
+[ext_resource type="Texture2D" uid="uid://c52if01nav115" path="res://Assets/Pin.png" id="2_30nkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qj4c"]
+size = Vector2(37, 117)
+
+[node name="Pin" type="Node2D" groups=["Pins"]]
+script = ExtResource("1_acq8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -57.5)
+texture = ExtResource("2_30nkg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, -57.5)
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_7qj4c")
+
+[connection signal="input_event" from="StaticBody2D" to="." method="OnMouseInput"]
+[connection signal="mouse_exited" from="StaticBody2D" to="." method="OnExit"]

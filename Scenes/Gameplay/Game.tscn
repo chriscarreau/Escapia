@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://p4muf8hocpph"]
+[gd_scene load_steps=25 format=3 uid="uid://p4muf8hocpph"]
 
 [ext_resource type="Script" path="res://Scenes/Gameplay/Game.cs" id="1_03rvx"]
 [ext_resource type="Script" path="res://Code/Cursor/CursorReset.cs" id="2_nvdjd"]
@@ -12,9 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://3fkw208f77vq" path="res://Assets/Sunny2.png" id="5_snqpf"]
 [ext_resource type="Texture2D" uid="uid://olbjf82ai1xh" path="res://Assets/Sunny3.png" id="6_x4763"]
 [ext_resource type="Texture2D" uid="uid://duiqcur4hnybb" path="res://Assets/Curtains.png" id="7_2hklj"]
+[ext_resource type="Texture2D" uid="uid://c867n15wpo1nl" path="res://Assets/Pluie1.png" id="7_gqafs"]
 [ext_resource type="Texture2D" uid="uid://bhyu760jle8ig" path="res://Assets/Desk.png" id="7_htito"]
+[ext_resource type="Texture2D" uid="uid://kt4cypk8fn48" path="res://Assets/Pluie2.png" id="8_mg6i6"]
+[ext_resource type="Texture2D" uid="uid://ctrccq2wfhhyt" path="res://Assets/Pluie3.png" id="9_pna7e"]
 [ext_resource type="Texture2D" uid="uid://b1dstp57p3x5v" path="res://Assets/Calendar.png" id="13_uxipn"]
 [ext_resource type="Texture2D" uid="uid://cicruu4neuqu1" path="res://Assets/Map.png" id="15_yid7d"]
+[ext_resource type="PackedScene" uid="uid://k571sewgmw70" path="res://Scenes/Objects/PinBowl.tscn" id="19_eskal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv4xm"]
 size = Vector2(1945, 1101)
@@ -36,8 +40,28 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_peabj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gqafs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mg6i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pna7e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nl0om"]
+size = Vector2(1914, 670)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53hcw"]
-size = Vector2(1920, 672.5)
+size = Vector2(1425, 483)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_03rvx")
@@ -58,13 +82,21 @@ position = Vector2(1263.47, 215)
 scale = Vector2(3.17647, 3.17647)
 texture = ExtResource("3_q1xap")
 
-[node name="Window" type="AnimatedSprite2D" parent="."]
+[node name="Sunny" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1049, 168)
 scale = Vector2(2.28704, 2.28704)
 sprite_frames = SubResource("SpriteFrames_jglcf")
 autoplay = "default"
-frame_progress = 0.930027
+frame_progress = 0.2803
+
+[node name="Rainy" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1048.91, 167.5)
+scale = Vector2(2.28704, 2.28704)
+sprite_frames = SubResource("SpriteFrames_peabj")
+autoplay = "default"
+frame_progress = 0.423292
 
 [node name="Curtains" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -106,12 +138,28 @@ position = Vector2(960.289, 743.25)
 scale = Vector2(2.99778, 2.99778)
 texture = ExtResource("7_htito")
 
+[node name="Map" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1007, 744)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("15_yid7d")
+
 [node name="DeskArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeskArea"]
 visible = false
-position = Vector2(961, 744.25)
+position = Vector2(960, 742)
+shape = SubResource("RectangleShape2D_nl0om")
+
+[node name="MapArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(294, 501)
+
+[node name="TEST" type="Node2D" parent="MapArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
+position = Vector2(712, 241)
 shape = SubResource("RectangleShape2D_53hcw")
 
 [node name="Calendar" type="Sprite2D" parent="."]
@@ -149,10 +197,7 @@ theme_override_font_sizes/font_size = 18
 text = "MONDAY"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1007, 744)
-scale = Vector2(2.3, 2.3)
-texture = ExtResource("15_yid7d")
+[node name="PinBowl" parent="." instance=ExtResource("19_eskal")]
+position = Vector2(1803, 544)
 
 [connection signal="input_event" from="CursorReset/MouseIdleArea" to="CursorReset" method="ResetMouseEvent"]

@@ -86,7 +86,6 @@ public partial class Flyer : Node2D
 		isOnDeskLbl.Visible = IsOnDesk;
 		if (Input.IsMouseButtonPressed(MouseButton.Left)) {
 			var mousePos = GetGlobalMousePosition();
-			// If this was dragged outside of desk, remove it
 			if (isDragging) {
 				Position = mousePos + dragOffset;
 			}
@@ -102,6 +101,7 @@ public partial class Flyer : Node2D
 			}
 			if (mousePos.X <= 0 || mousePos.X >= GetWindow().Size.X || mousePos.Y <= 0 || mousePos.Y >= GetWindow().Size.Y) {
 				isDragging = false;
+				// If this was dragged outside of desk, remove it
 				if (!IsOnDesk) {
 					QueueFree();
 				}
