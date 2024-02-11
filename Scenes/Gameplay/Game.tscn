@@ -1,23 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://p4muf8hocpph"]
+[gd_scene load_steps=6 format=3 uid="uid://p4muf8hocpph"]
 
 [ext_resource type="Script" path="res://Scenes/Gameplay/Game.cs" id="1_03rvx"]
+[ext_resource type="Script" path="res://Code/Cursor/CursorReset.cs" id="2_nvdjd"]
 [ext_resource type="PackedScene" uid="uid://cnin3ms3fis13" path="res://Scenes/Objects/Flyer.tscn" id="2_ydstd"]
-[ext_resource type="PackedScene" uid="uid://dpvrpbegrc3an" path="res://Scenes/Objects/FlyerThumbnail.tscn" id="3_sbsvg"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/FlyerThumbnail.tscn" id="3_sbsvg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrrjd"]
-size = Vector2(1180, 669)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv4xm"]
+size = Vector2(1175, 663)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_03rvx")
 
 [node name="CursorReset" type="Node" parent="."]
-script = ExtResource("3_kb02d")
+script = ExtResource("2_nvdjd")
 
-[node name="ResetZone" type="Area2D" parent="CursorReset"]
+[node name="Area2D" type="Area2D" parent="CursorReset"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CursorReset/ResetZone"]
-position = Vector2(580, 324.5)
-shape = SubResource("RectangleShape2D_mrrjd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CursorReset/Area2D"]
+position = Vector2(577.5, 321.5)
+shape = SubResource("RectangleShape2D_tv4xm")
 
 [node name="Window" type="Polygon2D" parent="."]
 position = Vector2(-495, -335)
@@ -46,6 +47,7 @@ polygon = PackedVector2Array(1261.8, 410.458, 1261.8, 626.95, 1709.49, 628.201, 
 [node name="Flyer" parent="." instance=ExtResource("2_ydstd")]
 position = Vector2(154, 464)
 
-[connection signal="input_event" from="CursorReset/ResetZone" to="CursorReset" method="ResetMouseEvent"]
 [node name="FlyerThumbnail" parent="." instance=ExtResource("3_sbsvg")]
 position = Vector2(464, 390)
+
+[connection signal="input_event" from="CursorReset/Area2D" to="CursorReset" method="ResetMouseEvent"]
