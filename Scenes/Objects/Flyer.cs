@@ -6,32 +6,54 @@ public partial class Flyer : Node2D
 	const int MAX_DRAG_REQUIRED = 200;
 	Polygon2D SecondPage;
 	AnimationPlayer AnimationPlayer;
+
+	private CursorManager cursorManager;
 	
 	private bool isDragging;
 	private bool isOpening;
 	private Vector2 openingDragStart;
 	private Vector2 dragOffset;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		SecondPage = GetNode<Polygon2D>("SecondPage");
 		AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		cursorManager = GetNode<CursorManager>("/root/CursorManager");
+	}
+
+	public void OnExit()
+	{
+		if (!isDragging && !isOpening)
+		{
+			cursorManager.SetCursorToPointer();
+		}
 	}
 
     public void OnMouseInput(Viewport viewport, InputEvent @event, int index)
     {
         if (@event is InputEventMouseButton pressedEvent) {
+			cursorManager.SetCursorToFist();
 			isDragging = pressedEvent.Pressed;
 			dragOffset = Position - GetGlobalMousePosition();
 		}
+        else if (!isDragging && !isOpening)
+        {
+			cursorManager.SetCursorToHand();
+        }
     }
 
     public void OnOpenInput(Viewport viewport, InputEvent @event, int index)
     {
         if (@event is InputEventMouseButton pressedEvent) {
+			cursorManager.SetCursorToFist90();
 			isOpening = pressedEvent.Pressed;
 			openingDragStart = GetGlobalMousePosition();
 		}
+        else if (!isDragging && !isOpening)
+        {
+			cursorManager.SetCursorToHand90();
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

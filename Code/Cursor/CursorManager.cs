@@ -41,6 +41,11 @@ public partial class CursorManager : Node
 	private int currentFrame = 0;
 	private int frameIncrement = 1;
 	private List<Resource> cursorFrames;
+	private string state;
+
+	private int resetStateTracker = 0;
+
+	private bool stateSet = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -76,8 +81,10 @@ public partial class CursorManager : Node
 		cursorCenter = new Vector2(50, 50);
 		
 		cursorFrames = new();
-		SetCusorToPointer();
+		SetCursorToPointer();
 	}
+
+	public bool ShouldReset => resetStateTracker - 1 <= 0;
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -88,8 +95,19 @@ public partial class CursorManager : Node
 		}
 	}
 
-	public void SetCusorToPointer()
+	public void ResetCursor()
 	{
+		if (resetStateTracker <= 0)
+		{
+			resetStateTracker = 0;
+			SetCursorToPointer();
+		}
+	}
+
+	public void SetCursorToPointer()
+	{
+		if (state == "pointer") return;
+		state = "pointer";
 		ResetAnim();
 		cursorFrames.Add(pointer);
 		cursorFrames.Add(pointer2);
@@ -99,6 +117,8 @@ public partial class CursorManager : Node
 
 	public void SetCursorToHand()
 	{
+		if (state == "hand") return;
+		state = "hand";
 		ResetAnim();
 		cursorFrames.Add(handOpened);
 		cursorFrames.Add(handSemi);
@@ -108,6 +128,8 @@ public partial class CursorManager : Node
 	
 	public void SetCursorToHand90()
 	{
+		if (state == "hand90") return;
+		state = "hand90";
 		ResetAnim();
 		cursorFrames.Add(hand90Opened);
 		cursorFrames.Add(hand90Semi);
@@ -117,6 +139,8 @@ public partial class CursorManager : Node
 
 	public void SetCursorToEye()
 	{
+		if (state == "eye") return;
+		state = "eye";
 		ResetAnim();
 		cursorFrames.Add(eyeClosed);
 		cursorFrames.Add(eyeSemi);
@@ -126,6 +150,8 @@ public partial class CursorManager : Node
 
 	public void SetCursorToMouth()
 	{
+		if (state == "mouth") return;
+		state = "mouth";
 		ResetAnim();
 		cursorFrames.Add(mouthClosed);
 		cursorFrames.Add(mouthSemi);
@@ -135,6 +161,8 @@ public partial class CursorManager : Node
 
 	public void SetCursorToFist()
 	{
+		if (state == "fist") return;
+		state = "fist";
 		ResetAnim();
 		cursorFrames.Add(fist1);
 		cursorFrames.Add(fist2);
@@ -144,6 +172,8 @@ public partial class CursorManager : Node
 	
 	public void SetCursorToFist90()
 	{
+		if (state == "fist90") return;
+		state = "fist90";
 		ResetAnim();
 		cursorFrames.Add(fist190);
 		cursorFrames.Add(fist290);
