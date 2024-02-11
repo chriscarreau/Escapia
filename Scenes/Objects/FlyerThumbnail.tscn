@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpvrpbegrc3an"]
 
-[ext_resource type="Texture2D" uid="uid://di22p37uf6goh" path="res://Assets/Cube.png" id="1_d5s4y"]
+[ext_resource type="Texture2D" uid="uid://di22p37uf6goh" path="res://Assets/Flyers/Cube.png" id="1_d5s4y"]
 [ext_resource type="Script" path="res://Scenes/Objects/FlyerThumbnail.cs" id="1_ixwil"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj43o"]
-size = Vector2(100, 150)
+size = Vector2(50, 75)
 
 [node name="FlyerThumbnail" type="Node2D"]
 script = ExtResource("1_ixwil")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_d5s4y")
 
 [node name="DragArea" type="StaticBody2D" parent="."]

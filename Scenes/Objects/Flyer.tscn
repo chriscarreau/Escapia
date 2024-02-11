@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnin3ms3fis13"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/Flyer.cs" id="1_p8kpo"]
-[ext_resource type="Texture2D" uid="uid://ncg6k5v2ujvk" path="res://Assets/Toenail3.png" id="2_qaso1"]
-[ext_resource type="Texture2D" uid="uid://c7pm0hsy1wneq" path="res://Assets/Toenail.png" id="2_sq6h3"]
-[ext_resource type="Texture2D" uid="uid://cm7uv3hasyhiw" path="res://Assets/Toenail2.png" id="3_mycih"]
+[ext_resource type="Texture2D" uid="uid://ncg6k5v2ujvk" path="res://Assets/Flyers/Toenail3.png" id="2_qaso1"]
+[ext_resource type="Texture2D" uid="uid://c7pm0hsy1wneq" path="res://Assets/Flyers/Toenail.png" id="2_sq6h3"]
+[ext_resource type="Texture2D" uid="uid://cm7uv3hasyhiw" path="res://Assets/Flyers/Toenail2.png" id="3_mycih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4rfe"]
 size = Vector2(150, 300)

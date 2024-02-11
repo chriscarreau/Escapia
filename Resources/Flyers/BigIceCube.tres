@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://cn4lc3qysoo43"]
+
+[ext_resource type="Script" path="res://Code/FlyerResource.cs" id="1_as7ne"]
+[ext_resource type="Texture2D" uid="uid://di22p37uf6goh" path="res://Assets/Flyers/Cube.png" id="1_m60oa"]
+[ext_resource type="Texture2D" uid="uid://l11ep1fsxq07" path="res://Assets/Flyers/Cube2.png" id="2_cifm5"]
+[ext_resource type="Texture2D" uid="uid://cs8tl8nphhl70" path="res://Assets/Flyers/Cube3.png" id="3_5tahb"]
+
+[resource]
+script = ExtResource("1_as7ne")
+Name = "BigIceCube"
+Pages = Array[Texture2D]([ExtResource("1_m60oa"), ExtResource("2_cifm5"), ExtResource("3_5tahb")])

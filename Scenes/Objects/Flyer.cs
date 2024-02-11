@@ -1,11 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Flyer : Node2D
 {
 	const int MAX_DRAG_REQUIRED = 200;
 	Polygon2D SecondPage;
 	AnimationPlayer AnimationPlayer;
+
+	List<Texture2D> Pages;
 	
 	private bool isDragging;
 	private bool isOpening;

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dd1038us2e7ru"]
+
+[ext_resource type="Texture2D" uid="uid://c7pm0hsy1wneq" path="res://Assets/Flyers/Toenail.png" id="1_t62xd"]
+[ext_resource type="Texture2D" uid="uid://cm7uv3hasyhiw" path="res://Assets/Flyers/Toenail2.png" id="2_635ut"]
+[ext_resource type="Texture2D" uid="uid://ncg6k5v2ujvk" path="res://Assets/Flyers/Toenail3.png" id="3_d32y5"]
+[ext_resource type="Script" path="res://Code/FlyerResource.cs" id="4_86qjx"]
+
+[resource]
+script = ExtResource("4_86qjx")
+Name = "ToenailMuseum"
+Pages = Array[Texture2D]([ExtResource("1_t62xd"), ExtResource("2_635ut"), ExtResource("3_d32y5")])

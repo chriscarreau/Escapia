@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ncg6k5v2ujvk"
-path="res://.godot/imported/Toenail3.png-5c309b00cb45f416916dd0018c8d3946.ctex"
+uid="uid://cs8tl8nphhl70"
+path="res://.godot/imported/Cube3.png-66f9ec0b673f84bf95bf45611c1f6ec3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Toenail3.png"
-dest_files=["res://.godot/imported/Toenail3.png-5c309b00cb45f416916dd0018c8d3946.ctex"]
+source_file="res://Assets/Flyers/Cube3.png"
+dest_files=["res://.godot/imported/Cube3.png-66f9ec0b673f84bf95bf45611c1f6ec3.ctex"]
 
 [params]
 
