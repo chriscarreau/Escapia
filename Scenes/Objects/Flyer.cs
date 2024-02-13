@@ -21,6 +21,7 @@ public partial class Flyer : Node2D
 	private Label isOnDeskLbl;
 
 	private Sprite2D shadow;
+	private State GameState;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -33,6 +34,7 @@ public partial class Flyer : Node2D
 			var ThirdPage = GetNode<Polygon2D>("ThirdPage");
 			ThirdPage.Texture = Pages[2];
 		}
+		GameState = GetNode<State>("/root/State");
 		AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		cursorManager = GetNode<CursorManager>("/root/CursorManager");
 		DeskArea = GetParent().GetNode<Area2D>("%DeskArea");
@@ -55,8 +57,14 @@ public partial class Flyer : Node2D
     {
         if (@event is InputEventMouseButton pressedEvent) {
 			cursorManager.SetCursorToFist();
-			if (pressedEvent.Pressed) {
-				isDragging = pressedEvent.Pressed;
+			if (pressedEvent.Pressed && GameState.CurrentDraggedObject == null) {
+				GameState.CurrentDraggedObject = this;
+				var flyers = GetTree().GetNodesInGroup("Flyers");
+				foreach (var flyer in flyers) {
+					((Flyer)flyer).ZIndex = 0;
+				}
+				isDragging = true;
+				ZIndex = 100;
 			}
 			dragOffset = Position - GetGlobalMousePosition();
 		}
@@ -69,9 +77,12 @@ public partial class Flyer : Node2D
     public void OnOpenInput(Viewport viewport, InputEvent @event, int index)
     {
         if (@event is InputEventMouseButton pressedEvent) {
-			cursorManager.SetCursorToFist90();
-			isOpening = pressedEvent.Pressed;
-			openingDragStart = GetGlobalMousePosition();
+			if (pressedEvent.Pressed && GameState.CurrentDraggedObject == null) {
+				GameState.CurrentDraggedObject = this;
+				cursorManager.SetCursorToFist90();
+				isOpening = true;
+				openingDragStart = GetGlobalMousePosition();
+			}
 		}
         else if (!isDragging && !isOpening)
         {
@@ -86,9 +97,6 @@ public partial class Flyer : Node2D
 		isOnDeskLbl.Visible = IsOnDesk;
 		if (Input.IsMouseButtonPressed(MouseButton.Left)) {
 			var mousePos = GetGlobalMousePosition();
-			if (isDragging) {
-				Position = mousePos + dragOffset;
-			}
 			if (isOpening) {
 				if (AnimationPlayer.CurrentAnimation != "Open") {
 					AnimationPlayer.Play("Open", -1, 0);
@@ -99,15 +107,24 @@ public partial class Flyer : Node2D
 				AnimationPlayer.Seek(percentage, true);
 				openingDragStart = mousePos;
 			}
-			if (mousePos.X <= 0 || mousePos.X >= GetWindow().Size.X || mousePos.Y <= 0 || mousePos.Y >= GetWindow().Size.Y) {
-				isDragging = false;
-				// If this was dragged outside of desk, remove it
-				if (!IsOnDesk) {
-					QueueFree();
+			if (isDragging) {
+				Position = mousePos + dragOffset;
+				if (mousePos.X <= 0 || mousePos.X >= GetWindow().Size.X || mousePos.Y <= 0 || mousePos.Y >= GetWindow().Size.Y) {
+					GameState.CurrentDraggedObject = null;
+					isDragging = false;
+					ZIndex = 10;
+					// If this was dragged outside of desk, remove it
+					if (!IsOnDesk) {
+						QueueFree();
+					}
 				}
 			}
 		}
 		else {
+			if (isDragging || isOpening) {
+				GameState.CurrentDraggedObject = null;
+				ZIndex = 10;
+			}
 			// If this was dragged outside of desk, remove it
 			if (isDragging && !IsOnDesk) {
 				QueueFree();

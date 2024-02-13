@@ -106,7 +106,7 @@ _data = {
 "Open": SubResource("Animation_koti7")
 }
 
-[node name="Flyer" type="Node2D"]
+[node name="Flyer" type="Node2D" groups=["Flyers"]]
 script = ExtResource("1_p8kpo")
 
 [node name="Shadow" type="Sprite2D" parent="."]

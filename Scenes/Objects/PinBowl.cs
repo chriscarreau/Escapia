@@ -24,7 +24,7 @@ public partial class PinBowl : Node2D
     public override void _Process(double delta) {
 		if (Input.IsMouseButtonPressed(MouseButton.Left) && isDragging) {
 			if(dragStart != GetGlobalMousePosition()) {
-				SpawnNewFlyer();
+				SpawnNewPin();
 				isDragging = false;
 			}
 		}
@@ -33,7 +33,7 @@ public partial class PinBowl : Node2D
 		}
 	}
 
-	public void SpawnNewFlyer() {
+	public void SpawnNewPin() {
 		var pin = PinScene.Instantiate<Pin>();
 		pin.isDragging = true;
 		GetParent().AddChild(pin);

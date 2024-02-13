@@ -25,8 +25,10 @@ public partial class Pin : Node2D
     {
         if (@event is InputEventMouseButton pressedEvent) {
 			cursorManager.SetCursorToFist();
-			if (pressedEvent.Pressed) {
-				isDragging = pressedEvent.Pressed;
+			if (pressedEvent.Pressed && GameState.CurrentDraggedObject == null) {
+				GameState.CurrentDraggedObject = this;
+				isDragging = true;
+				ZIndex = 100;
 			}
 			dragOffset = Position - GetGlobalMousePosition();
 		}
@@ -64,6 +66,7 @@ public partial class Pin : Node2D
 				}
 				GameState.CurrentLocationGuess = MapArea.GetNode<Node2D>("TEST").ToLocal(ToGlobal(Position));
 				GD.Print($"Position is [{GameState.CurrentLocationGuess.X}, {GameState.CurrentLocationGuess.Y}]");
+				GameState.CurrentDraggedObject = null;
 			}
 			isDragging = false;
 		}
