@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://cig6dmig0ey0e"]
+
+[ext_resource type="Texture2D" uid="uid://t1ca0n8aovfs" path="res://Assets/Images/Characters/Noses/Nose1/Nose1.png" id="1_63bow"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.01,
+"texture": ExtResource("1_63bow")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

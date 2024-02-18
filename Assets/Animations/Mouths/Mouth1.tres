@@ -1,0 +1,52 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://g7yky8i7aanb"]
+
+[ext_resource type="Texture2D" uid="uid://d3lwtdiodwnin" path="res://Assets/Images/Characters/Mouths/Mouth1/MouthClosed.png" id="1_yobjk"]
+[ext_resource type="Texture2D" uid="uid://b126bg2kcilta" path="res://Assets/Images/Characters/Mouths/Mouth1/MouthOpen1.png" id="2_e0ptr"]
+[ext_resource type="Texture2D" uid="uid://bpubhtf1nytp5" path="res://Assets/Images/Characters/Mouths/Mouth1/MouthOpen2.png" id="3_412y6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yobjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e0ptr")
+}],
+"loop": false,
+"name": &"Talk",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yobjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_412y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e0ptr")
+}],
+"loop": false,
+"name": &"Talk2",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yobjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_yobjk")
+}],
+"loop": false,
+"name": &"Talk3",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 0.01,
+"texture": ExtResource("1_yobjk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Gameplay/Game.cs" id="1_03rvx"]
 [ext_resource type="Script" path="res://Code/Cursor/CursorReset.cs" id="2_nvdjd"]
 [ext_resource type="Texture2D" uid="uid://bx2st863lxyjt" path="res://Assets/FlyerStand.png" id="3_1ad1h"]
-[ext_resource type="Texture2D" uid="uid://dxu124m8wolr2" path="res://Assets/Character1.png" id="3_c01uu"]
 [ext_resource type="Texture2D" uid="uid://cppiih2yilo41" path="res://Assets/Wall.png" id="3_q1xap"]
-[ext_resource type="PackedScene" uid="uid://dpvrpbegrc3an" path="res://Scenes/Objects/FlyerThumbnail.tscn" id="3_sbsvg"]
+[ext_resource type="PackedScene" uid="uid://rx08gqhgrma4" path="res://Scenes/Objects/FlyerThumbnail.tscn" id="3_sbsvg"]
 [ext_resource type="Texture2D" uid="uid://btj3wqafjjobs" path="res://Assets/Sunny1.png" id="4_nvyyw"]
 [ext_resource type="Resource" uid="uid://dd1038us2e7ru" path="res://Resources/Flyers/ToeNails.tres" id="4_utxbv"]
 [ext_resource type="Resource" uid="uid://cn4lc3qysoo43" path="res://Resources/Flyers/BigIceCube.tres" id="5_i2mib"]
@@ -16,9 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://bhyu760jle8ig" path="res://Assets/Desk.png" id="7_htito"]
 [ext_resource type="Texture2D" uid="uid://kt4cypk8fn48" path="res://Assets/Pluie2.png" id="8_mg6i6"]
 [ext_resource type="Texture2D" uid="uid://ctrccq2wfhhyt" path="res://Assets/Pluie3.png" id="9_pna7e"]
+[ext_resource type="PackedScene" uid="uid://7lqc4xpuikei" path="res://Scenes/Objects/character.tscn" id="11_b6gd5"]
 [ext_resource type="Texture2D" uid="uid://b1dstp57p3x5v" path="res://Assets/Calendar.png" id="13_uxipn"]
 [ext_resource type="Texture2D" uid="uid://cicruu4neuqu1" path="res://Assets/Map.png" id="15_yid7d"]
-[ext_resource type="PackedScene" uid="uid://k571sewgmw70" path="res://Scenes/Objects/PinBowl.tscn" id="19_eskal"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/PinBowl.tscn" id="19_eskal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv4xm"]
 size = Vector2(1945, 1101)
@@ -70,9 +70,9 @@ script = ExtResource("1_03rvx")
 script = ExtResource("2_nvdjd")
 
 [node name="MouseIdleArea" type="Area2D" parent="CursorReset"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CursorReset/MouseIdleArea"]
+visible = false
 position = Vector2(962.5, 540.5)
 shape = SubResource("RectangleShape2D_tv4xm")
 
@@ -104,11 +104,8 @@ position = Vector2(1057, 170)
 scale = Vector2(2.32114, 2.32114)
 texture = ExtResource("7_2hklj")
 
-[node name="Client" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1494.63, 271.583)
-scale = Vector2(2.54333, 2.54333)
-texture = ExtResource("3_c01uu")
+[node name="Character" parent="." instance=ExtResource("11_b6gd5")]
+position = Vector2(1499, 342)
 
 [node name="Flyers" type="Polygon2D" parent="."]
 visible = false
@@ -125,7 +122,6 @@ texture = ExtResource("3_1ad1h")
 
 [node name="ToeNail" parent="." instance=ExtResource("3_sbsvg")]
 position = Vector2(78, 66)
-scale = Vector2(1, 1)
 FlyerData = ExtResource("4_utxbv")
 
 [node name="IceCube" parent="." instance=ExtResource("3_sbsvg")]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://7lqc4xpuikei"]
+
+[ext_resource type="Script" path="res://Code/Character/CharacterController.cs" id="1_bfgd3"]
+[ext_resource type="SpriteFrames" uid="uid://drnl38jeb3xk1" path="res://Assets/Animations/Heads/Character2.tres" id="2_1e350"]
+[ext_resource type="SpriteFrames" uid="uid://bco3dw2rhgcv1" path="res://Assets/Animations/Eyes/Character2.tres" id="3_6v1nx"]
+[ext_resource type="SpriteFrames" uid="uid://drolnvquh2xm1" path="res://Assets/Animations/Hairs/Character2.tres" id="3_hnvjd"]
+[ext_resource type="SpriteFrames" uid="uid://c7mqkh2tnsvwv" path="res://Assets/Animations/Mouths/Character2.tres" id="5_ox4md"]
+[ext_resource type="SpriteFrames" uid="uid://cig6dmig0ey0e" path="res://Assets/Animations/Noses/Nose1.tres" id="6_6kq4q"]
+[ext_resource type="SpriteFrames" uid="uid://c14u520ptgbt5" path="res://Assets/Animations/Bodies/Character2.tres" id="7_jlf6l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvtki"]
+size = Vector2(72.625, 87)
+
+[node name="Character" type="Node2D"]
+texture_filter = 1
+scale = Vector2(4, 4)
+script = ExtResource("1_bfgd3")
+
+[node name="Head" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Head"]
+sprite_frames = ExtResource("2_1e350")
+
+[node name="Eyes" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Eyes"]
+sprite_frames = ExtResource("3_6v1nx")
+
+[node name="Hair" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Hair"]
+sprite_frames = ExtResource("3_hnvjd")
+
+[node name="Mouth" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mouth"]
+sprite_frames = ExtResource("5_ox4md")
+animation = &"Talk2"
+
+[node name="Nose" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Nose"]
+texture_filter = 1
+sprite_frames = ExtResource("6_6kq4q")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Body"]
+sprite_frames = ExtResource("7_jlf6l")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.9375, -39.75)
+shape = SubResource("RectangleShape2D_jvtki")
+
+[connection signal="animation_finished" from="Eyes/Sprite" to="." method="StopBlinking"]
+[connection signal="animation_finished" from="Mouth/Sprite" to="." method="OnTalkEnd"]
+[connection signal="input_event" from="Area2D" to="." method="OnMouseInput"]
+[connection signal="mouse_exited" from="Area2D" to="." method="OnMouseExit"]

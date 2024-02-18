@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpvrpbegrc3an"]
+[gd_scene load_steps=4 format=3 uid="uid://rx08gqhgrma4"]
 
 [ext_resource type="Texture2D" uid="uid://di22p37uf6goh" path="res://Assets/Flyers/Cube.png" id="1_d5s4y"]
 [ext_resource type="Script" path="res://Scenes/Objects/FlyerThumbnail.cs" id="1_ixwil"]
@@ -20,3 +20,4 @@ input_pickable = true
 shape = SubResource("RectangleShape2D_yj43o")
 
 [connection signal="input_event" from="DragArea" to="." method="OnMouseInput"]
+[connection signal="mouse_exited" from="DragArea" to="." method="OnExit"]

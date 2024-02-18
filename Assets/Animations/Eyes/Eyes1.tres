@@ -1,0 +1,33 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://ba00tns6ukm0i"]
+
+[ext_resource type="Texture2D" uid="uid://d0ta11v7polx4" path="res://Assets/Images/Characters/Eyes/Eyes1/Eyes1.png" id="1_pl0wh"]
+[ext_resource type="Texture2D" uid="uid://dn13yjspqa63x" path="res://Assets/Images/Characters/Eyes/Eyes1/EyesTween.png" id="2_41heb"]
+[ext_resource type="Texture2D" uid="uid://edmwtgnxbajt" path="res://Assets/Images/Characters/Eyes/Eyes1/EyeBlink.png" id="3_7e4c0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pl0wh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_41heb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7e4c0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_41heb")
+}],
+"loop": false,
+"name": &"Blink",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 0.01,
+"texture": ExtResource("1_pl0wh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

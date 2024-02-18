@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://yjujsd4wpgd0"]
+
+[ext_resource type="Texture2D" uid="uid://dy3hd4pkdn0wj" path="res://Assets/Images/Characters/Hairs/Hair1/Hair1.png" id="1_are8d"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.01,
+"texture": ExtResource("1_are8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
