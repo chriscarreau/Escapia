@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 public partial class Game : Node2D
@@ -8,11 +9,27 @@ public partial class Game : Node2D
 	public Events GlobalEvents;
 	public State GameState;
 
+	private Label MonthLabel;
+	private Label DateLabel;
+	private Label WeekdayLabel;
+	
+	private AnimatedSprite2D SunnyWindow;
+	private AnimatedSprite2D RainyWindow;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GlobalEvents = GetNode<Events>("/root/Events");
 		GameState = GetNode<State>("/root/State");
+		MonthLabel = GetNode<Label>("MonthLbl");
+		DateLabel = GetNode<Label>("DateLbl");
+		WeekdayLabel = GetNode<Label>("DayLbl");
+		
+		SunnyWindow = GetNode<AnimatedSprite2D>("Sunny");
+		RainyWindow = GetNode<AnimatedSprite2D>("Rainy");
+
+		InitGame();
+		UpdateDisplay();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +37,24 @@ public partial class Game : Node2D
 	{
 	}
 
+	public void OnResetDayClicked() {
+		IncrementDay();
+		UpdateDisplay();
+	}
 
+	public void UpdateDisplay() {
+
+		// Set Calendar labels
+		var monthName = new DateTime(2000, GameState.Date.Month, 1)
+			.ToString("MMM", CultureInfo.InvariantCulture);
+		MonthLabel.Text = monthName;
+		DateLabel.Text = GameState.Date.Day.ToString();
+		WeekdayLabel.Text = Enum.GetName(GameState.CurrentDay);
+
+		// Set Window
+		SunnyWindow.Visible = GameState.CurrentWeather == Weather.Sunny;
+		RainyWindow.Visible = GameState.CurrentWeather == Weather.Rainy;
+	}
 	/// <summary>
 	/// Initializes a new GameState
 	/// </summary>
@@ -29,9 +63,9 @@ public partial class Game : Node2D
 		var client = GenerateRandomClient();
 		GameState = new State{
 			// Randomise date for any month, and any date below 22, so that we never during a 7 days game have to switch months
-			Date = new MonthDate(rand.Next(1,12), rand.Next(1,21)),
+			Date = new MonthDate(rand.Next(1,12), 1),
 			CurrentDay = (WeekDays)rand.Next(0,6),
-			CurrentWeather = rand.Next(0,1) == 0 ? Weather.Sunny : Weather.Rainy,
+			CurrentWeather = rand.Next(0,2) == 0 ? Weather.Sunny : Weather.Rainy,
 			CurrentClient = client,
 			CurrentLocationGuess = Vector2.Zero,
 		};
@@ -40,9 +74,9 @@ public partial class Game : Node2D
 	/// <summary>
 	/// Increment the dates and set a new client
 	/// </summary>
-	public void StartNewDay() {
+	public void IncrementDay() {
 		var rand = new Random();
-		var weather = rand.Next(0,1) == 0 ? Weather.Sunny : Weather.Rainy;
+		var weather = rand.Next(0,2) == 0 ? Weather.Sunny : Weather.Rainy;
 		// Increment day with loop
 		GameState.CurrentDay = (WeekDays)((int)(GameState.CurrentDay + 1) % 7);
 		GameState.Date = new MonthDate(GameState.Date.Month, GameState.Date.Day + 1);

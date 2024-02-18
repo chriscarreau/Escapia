@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://p4muf8hocpph"]
+[gd_scene load_steps=26 format=3 uid="uid://p4muf8hocpph"]
 
 [ext_resource type="Script" path="res://Scenes/Gameplay/Game.cs" id="1_03rvx"]
 [ext_resource type="Script" path="res://Code/Cursor/CursorReset.cs" id="2_nvdjd"]
@@ -18,7 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://7lqc4xpuikei" path="res://Scenes/Objects/character.tscn" id="11_b6gd5"]
 [ext_resource type="Texture2D" uid="uid://b1dstp57p3x5v" path="res://Assets/Calendar.png" id="13_uxipn"]
 [ext_resource type="Texture2D" uid="uid://cicruu4neuqu1" path="res://Assets/Map.png" id="15_yid7d"]
-[ext_resource type="PackedScene" path="res://Scenes/Objects/PinBowl.tscn" id="19_eskal"]
+[ext_resource type="FontFile" uid="uid://2mfy14msiviv" path="res://Resources/UglyByteFreeTrial-K7EBZ.otf" id="19_806s5"]
+[ext_resource type="PackedScene" uid="uid://k571sewgmw70" path="res://Scenes/Objects/PinBowl.tscn" id="19_eskal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv4xm"]
 size = Vector2(1945, 1101)
@@ -165,35 +166,46 @@ texture = ExtResource("13_uxipn")
 
 [node name="MonthLbl" type="Label" parent="."]
 offset_left = 1718.0
-offset_top = 89.0
+offset_top = 87.0
 offset_right = 1828.0
-offset_bottom = 128.0
+offset_bottom = 139.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_fonts/font = ExtResource("19_806s5")
+theme_override_font_sizes/font_size = 56
 text = "JAN"
 horizontal_alignment = 1
 
 [node name="DateLbl" type="Label" parent="."]
 offset_left = 1718.0
-offset_top = 127.0
+offset_top = 117.0
 offset_right = 1827.0
-offset_bottom = 172.0
+offset_bottom = 175.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("19_806s5")
+theme_override_font_sizes/font_size = 64
 text = "1"
 horizontal_alignment = 1
 
-[node name="DayLbl3" type="Label" parent="."]
+[node name="DayLbl" type="Label" parent="."]
 offset_left = 1718.0
 offset_top = 174.0
 offset_right = 1828.0
 offset_bottom = 200.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 18
-text = "MONDAY"
+theme_override_fonts/font = ExtResource("19_806s5")
+theme_override_font_sizes/font_size = 32
+text = "WEDNESDAY"
 horizontal_alignment = 1
 
 [node name="PinBowl" parent="." instance=ExtResource("19_eskal")]
 position = Vector2(1803, 544)
 
+[node name="Button" type="Button" parent="."]
+offset_left = 1091.0
+offset_top = 333.0
+offset_right = 1181.0
+offset_bottom = 364.0
+text = "INCREMENT DAY"
+
 [connection signal="input_event" from="CursorReset/MouseIdleArea" to="CursorReset" method="ResetMouseEvent"]
+[connection signal="pressed" from="Button" to="." method="OnResetDayClicked"]

@@ -8,6 +8,8 @@ using Godot;
 /// </summary>
 public partial class State : Node
 {
+    // EWWWW
+    public Node2D CurrentDraggedObject;
 
     public List<Activity> Activities = new List<Activity>();
 

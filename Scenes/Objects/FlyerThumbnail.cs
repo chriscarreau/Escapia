@@ -61,6 +61,7 @@ public partial class FlyerThumbnail : Node2D
 		var flyer = FlyerScene.Instantiate<Flyer>();
 		flyer.Pages = FlyerData.Pages;
 		flyer.isDragging = true;
+		flyer.ZIndex = 100;
 		GetParent().AddChild(flyer);
 	}
 }
